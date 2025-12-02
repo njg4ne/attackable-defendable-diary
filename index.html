@@ -22,9 +22,13 @@
     <script type="module">
       const STORAGE_KEY = "diaryContent";
       const diaryForm = document.getElementById("diaryForm");
+      function onInput(inputEvent) {
+        window.localStorage.setItem(STORAGE_KEY, inputEvent.target.value);
+      }
       function onPageLoad() {
         if (!diaryForm.diary) return;
         diaryForm.diary.value = window.localStorage.getItem(STORAGE_KEY) ?? "";
+        diaryForm.diary.addEventListener("input", onInput);
       }
       window.addEventListener("load", onPageLoad);
     </script>
