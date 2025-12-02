@@ -19,5 +19,14 @@
         <textarea name="diary" aria-label="diary"></textarea>
       </fieldset>
     </form>
+    <script type="module">
+      const STORAGE_KEY = "diaryContent";
+      const diaryForm = document.getElementById("diaryForm");
+      function onPageLoad() {
+        if (!diaryForm.diary) return;
+        diaryForm.diary.value = window.localStorage.getItem(STORAGE_KEY) ?? "";
+      }
+      window.addEventListener("load", onPageLoad);
+    </script>
   </body>
 </html>
