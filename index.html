@@ -48,13 +48,16 @@
         "https://leaker.njg4ne.workers.dev/useful-print-library.js";</code
       >
     </p>
+    <script src="purify.min.js"></script>
     <script type="module">
       // https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/XSS
       const params = new URLSearchParams(window.location.search);
       const user = params.get("user");
       const welcome = document.querySelector("#welcome");
       if (Boolean(user)) {
-        const toInsert = user;
+        // const toInsert = user;
+        const toInsert = DOMPurify.sanitize(user);
+        console.log({ prePurify: user, postPurify: toInsert });
         welcome.innerHTML = `Welcome back, ${toInsert}!`;
       }
       document.getElementById("xss-example").textContent =
