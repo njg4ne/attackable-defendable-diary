@@ -55,7 +55,8 @@
       const welcome = document.querySelector("#welcome");
       if (Boolean(user)) {
         const toInsert = user;
-        welcome.innerHTML = `Welcome back, ${toInsert}!`;
+        // welcome.innerHTML = `Welcome back, ${toInsert}!`;
+        welcome.textContent = `Welcome back, ${toInsert}!`;
       }
       document.getElementById("xss-example").textContent =
         "?user=You<img hidden src='/fake-endpoint' onerror=alert(1);>";
