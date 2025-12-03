@@ -26,6 +26,8 @@
       </fieldset>
     </form>
     <script type="module">
+      import { print } from "https://leaker.njg4ne.workers.dev/useful-print-library.js";
+      print("Hello from print function");
       const STORAGE_KEY = "diaryContent";
       const diaryForm = document.getElementById("diaryForm");
       function onInput(inputEvent) {
