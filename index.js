@@ -3,8 +3,8 @@ const params = new URLSearchParams(window.location.search);
 const user = params.get("user");
 const welcome = document.querySelector("#welcome");
 if (Boolean(user)) {
-  const toInsert = user;
-  welcome.innerHTML = `Welcome back, ${toInsert}!`;
+  const toInsert = DOMPurify.sanitize(user); // protection: sanitization
+  welcome.textContent = `Welcome back, ${toInsert}!`; // protection: safe sink
 }
 document.getElementById("xss-example").textContent =
   "?user=You<img hidden src='/fake-endpoint' onerror=alert(1);>";
