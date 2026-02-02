@@ -6,6 +6,7 @@ A static diary app for demonstrating single-file HTML5 apps, Supply Chain attack
 
 - Diary with no intended vulnerability [https://diary.njg4ne.workers.dev/](https://diary.njg4ne.workers.dev/)
 - Diary with an unprotected XSS vulnerability [https://unsafe-diary.njg4ne.workers.dev/](https://unsafe-diary.njg4ne.workers.dev/)
+- Diary with an unprotected XSS vulnerability and explanatory content about the vulnerability [https://unsafe-diary-demo.njg4ne.workers.dev/](https://unsafe-diary-demo.njg4ne.workers.dev/)
 - Diary with a layered protection against intended XSS vulnerability [https://safe-diary.njg4ne.workers.dev/](https://safe-diary.njg4ne.workers.dev/)
   - [safe sink](https://developer.mozilla.org/en-US/docs/Web/API/Trusted_Types_API) for unsafe content
   - [DOMPurify](https://github.com/cure53/DOMPurify) for content sanitization
